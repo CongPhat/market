@@ -1,0 +1,83 @@
+@import '../../../assets/scss/variables';
+
+.button-component {
+  display: inline-block !important;
+  border: none !important;
+  background-color: $color-yellow;
+  border-radius: 4px !important;
+  font-weight: 500 !important ;
+  color: #ffffff !important ;
+  letter-spacing: 1px !important;
+  padding: 12px 20px !important;
+  max-height: 45px;
+  font-size: 14px !important;
+  cursor: pointer;
+  min-width: 145px;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  &:hover {
+    background-color: $color-blue;
+  }
+  &:focus,
+  &:active {
+    box-shadow: none !important;
+  }
+  &-blue {
+    background-color: $color-blue;
+    &:hover {
+      background-color: $color-yellow-1;
+    }
+  }
+
+  .icon {
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  &.btn-lg {
+    //padding: 1px 115px;
+    width: 300px;
+
+    .icon {
+      margin-right: 18px;
+    }
+  }
+
+  &.btn-secondary {
+    background: $color-secondary !important;
+    color: $color-text-dark;
+
+    &:hover,
+    &:focus {
+      color: $color-text-dark;
+    }
+
+    &:disabled {
+      color: $color-text-dark;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+    border: 2px solid #cbd2d6;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: no-drop;
+  }
+
+  .anticon {
+    vertical-align: 0 !important;
+  }
+  .anticon-loading {
+    font-size: 18px !important;
+  }
+}

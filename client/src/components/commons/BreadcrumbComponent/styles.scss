@@ -1,0 +1,102 @@
+@import "../../../assets/scss/_variables.scss";
+
+$font-size: 1rem;
+$font-size-active: 1.25rem;
+$text-color: $color-button;
+//$color-active: #034da2;
+
+.my-breadCrumb-component {
+  padding: 0;
+
+  .breadcrumb-item {
+    font-size: 1.4rem;
+    color: $color-text-dark;
+    font-weight: 700;
+
+    &:before {
+      color: $text-color;
+    }
+
+    a {
+      color: $color-text-dark;
+      font-size: $font-size;
+    }
+
+    &:hover {
+      //text-decoration: underline;
+      a {
+        //color: $color-hover
+      }
+    }
+
+    &.active {
+      color: $color-button !important;
+      font-size: $font-size-active;
+      &:hover {
+        //text-decoration: none;
+      }
+    }
+  }
+}
+
+.breadcrumbs-area {
+  padding: 8px 0 17px;
+  position: relative;
+  z-index: 1;
+  h3 {
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #111111;
+    margin-bottom: 8px;
+  }
+  ul {
+    padding: 0;
+    li {
+      display: inline-block;
+      color: #fea801;
+      font-size: 16px;
+      position: relative;
+      margin-right: 15px;
+      padding-right: 5px;
+      padding-left: 5px;
+      &::before {
+        content: "\f105";
+        // font-family: Flaticon;
+        font-family: "Font Awesome 5 Free";
+        position: absolute;
+        font-size: 10px;
+        font-weight: 600;
+        right: -10px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        z-index: 5;
+        color: #fea801;
+      }
+      a {
+        color: #646464;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        &:hover {
+          color: #fea801;
+        }
+      }
+      &:first-child {
+        padding-left: 0px;
+      }
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}

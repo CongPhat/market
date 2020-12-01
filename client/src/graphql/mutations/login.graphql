@@ -1,0 +1,5 @@
+mutation CreateMessages($text: String!, $id: String!, $idUser: String!) {
+  createMessage(text: $text, id: $id, idUser: $idUser) {
+    content
+  }
+}

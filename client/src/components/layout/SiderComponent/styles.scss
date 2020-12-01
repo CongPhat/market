@@ -1,0 +1,149 @@
+@import "../../../assets/scss/_variables.scss";
+
+.ant-layout-sider-collapsed {
+  .logo {
+    display: flex;
+    img {
+      display: none;
+    }
+  }
+  .ant-menu .ant-menu-item span {
+    display: none;
+  }
+  .ant-menu-submenu {
+    &-title {
+      span {
+        display: none;
+      }
+    }
+    &-vertical {
+    }
+  }
+}
+
+.siderComponent {
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    &.collapsed {
+      justify-content: center;
+    }
+  }
+
+  .label-menu-item {
+    font-size: 15px;
+  }
+  .label-menu-item-sub {
+    font-size: 14px;
+  }
+  .logo {
+    min-height: 86px;
+    background-color: #ff9d01;
+    //padding-top: 1rem;
+    //padding-bottom: 1rem;
+  }
+  .ant-menu-dark {
+    background: transparent !important;
+  }
+  .ant-menu-sub {
+    background: #051f3e !important;
+  }
+
+  .ant-menu {
+    //background: $color-theme !important;
+
+    .ant-menu-inline-collapsed {
+      .ant-menu-item {
+        display: flex;
+        // i {
+        //   width: 10% !important;
+        //   text-align: center !important;
+        // }
+      }
+    }
+
+    .ant-menu-item {
+      .anticon {
+        color: white;
+      }
+      .icon-label {
+        transition: 0.2s;
+      }
+      span {
+        .item-label {
+          opacity: 0.75;
+        }
+      }
+    }
+
+    .ant-menu-item-selected {
+      .icon-label {
+        color: $color-text-red !important;
+        opacity: 1;
+      }
+      span {
+        .item-label {
+          color: $color-text-red !important;
+        }
+      }
+    }
+    .ant-menu-submenu-title {
+      i {
+        width: 20%;
+        text-align: center;
+        font-size: 18px;
+      }
+    }
+    .ant-menu-item {
+      i {
+        width: 18%;
+        text-align: center;
+        font-size: 18px;
+      }
+      span {
+        a {
+          font-weight: 500;
+          font-size: 15px;
+        }
+      }
+    }
+    .ant-menu-inline {
+      i {
+        width: 18%;
+        text-align: center;
+        font-size: 15px;
+      }
+    }
+
+    .ant-menu-item-active {
+      //hover
+      background: white !important;
+      color: $text-color-active-white !important;
+
+      & > span > a,
+      & > .anticon {
+        color: $text-color-active !important;
+      }
+      .icon-label {
+        color: $color-text-red !important;
+        opacity: 1;
+      }
+      span {
+        .item-label {
+          color: $color-text-red !important;
+        }
+      }
+    }
+
+    .ant-menu-item-selected {
+      background: transparent !important;
+      color: $text-color-active-white !important;
+      & > span > a,
+      & > .anticon {
+        color: $text-color-active-white;
+      }
+    }
+  }
+}
