@@ -1,0 +1,7 @@
+query getProfile {
+  getProfile {
+    name
+    image
+    description
+  }
+}

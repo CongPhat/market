@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.17.0",
-    "apollo-server-express": "^2.17.0",
+    "apollo-server-express": "^2.19.0",
     "atob": "^2.1.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

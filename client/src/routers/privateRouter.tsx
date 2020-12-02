@@ -1,3 +1,4 @@
+import { HOME } from "@config/index";
 import React from "react";
 import Loadable from "react-loadable";
 import LoadingComponent from "../components/commons/LoadingComponent/loadingComponent";
@@ -18,7 +19,7 @@ const Recoil = Loadable({
 
 export const privateRouter: Array<object> = [
   {
-    path: "/",
+    path: HOME,
     exact: true,
     permissionCode: "ALLOW",
     main: () => <Dashboard />,

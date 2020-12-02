@@ -24,7 +24,7 @@ const mongoUrl = "mongodb://localhost:27017/market?retryWrites=true&w=majority";
 require("dotenv/config");
 app.use(
   cors({
-    origin: ["http://localhost:4444", "https://congphat.github.io"],
+    origin: ["http://localhost:6969", "https://congphat.github.io"],
   })
 );
 app.use(bodyParser.json());
@@ -54,17 +54,17 @@ const apolloServer = new ApolloServer({
   schema: schemaGraphql,
   rootValue: resolversGraphql,
   context: async ({ req, connection }) => {
-    // if (connection) {
-    //   return connection.context;
-    // } else {
-    //   if (!req.headers.authorization) {
-    //     throw new Error("Missing auth token!");
-    //   }
-    //   const userResult = await controllerAuth.checkTokenGraphql(
-    //     req.headers.authorization
-    //   );
-    //   return { userAuth: userResult };
-    // }
+    if (connection) {
+      return connection.context;
+    } else {
+      if (!req.headers.authorization) {
+        throw new Error("Missing auth token!");
+      }
+      const userResult = await controllerAuth.checkTokenGraphql(
+        req.headers.authorization
+      );
+      return { userAuth: userResult };
+    }
   },
   playground: true,
   introspection: true,
@@ -83,11 +83,11 @@ server.listen(3000, () => {
       rootValue: resolversGraphql,
       graphiql: true,
       onConnect: async (connectionParams, webSocket, context) => {
-        // const result = await controllerAuth.checkTokenGraphql(
-        //   connectionParams.authToken
-        // );
-        // controllerAuth.userOnline(result._id);
-        return { userOnline: 1234 };
+        const result = await controllerAuth.checkTokenGraphql(
+          connectionParams.authToken
+        );
+        controllerAuth.userOnline(result._id);
+        return { userOnline: result };
       },
       onDisconnect: async (webSocket, context) => {
         context.initPromise.then((res) => {
@@ -107,7 +107,11 @@ const connectWithRetry = function () {
   // when using with docker, at the time we up containers. Mongodb take few seconds to starting, during that time NodeJS server will try to connect MongoDB until success.
   return mongoose.connect(
     mongoUrl,
-    { useNewUrlParser: true, useFindAndModify: false },
+    {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    },
     (err) => {
       if (err) {
         console.error(

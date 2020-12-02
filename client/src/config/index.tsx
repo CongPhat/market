@@ -11,3 +11,4 @@ export const USA = "USA";
 export const CURRENT_LANGUAGE = "__INIT__CURRENT_LANGUAGE__";
 
 export const DASHBOARD = "/dashboard";
+export const HOME = "/:id";

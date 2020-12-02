@@ -19798,7 +19798,7 @@ video {
 }
 
 .content-area {
-  width: calc(100% - 275px);
+  width: calc(100% - 20%);
 }
 
 @media (min-width: 640px) {

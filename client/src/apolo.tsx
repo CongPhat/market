@@ -9,7 +9,7 @@ import { SERVICES } from "@config/index";
 const token = localStorage.getItem(SERVICES.AuthenticationHeaderField);
 
 const httpLink = new HttpLink({
-  uri: "localhost:3000/graphql",
+  uri: "http://localhost:3000/graphql",
 });
 
 const wsLink = new WebSocketLink({

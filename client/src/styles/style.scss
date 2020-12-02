@@ -16,3 +16,11 @@
   src: local("Roboto Bold"), local("Roboto-Bold"),
     url("../assets/font/Roboto/Roboto-Bold.ttf") format("truetype");
 }
+
+.market-menu {
+  .ant-menu {
+    &-item {
+      display: flex;
+    }
+  }
+}

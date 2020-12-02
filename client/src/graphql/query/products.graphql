@@ -1,0 +1,19 @@
+query getProducts($pageSize: Int!, $pageNumber: Int!, $idCategory: String!) {
+  getProducts(
+    pageSize: $pageSize
+    pageNumber: $pageNumber
+    idCategory: $idCategory
+  ) {
+    _id
+    content
+    price
+    address
+    userId
+    media {
+      link
+      type
+    }
+    categoryId
+    trending
+  }
+}

@@ -7,17 +7,13 @@ const { Content, Footer } = Layout;
 
 const DefaultLayout = (props) => {
   return (
-    <section className="default-layout flex px-16 bg-gray-200">
-      {/* <SiderComponent /> */}
+    <section className="default-layout flex bg-gray-200 h-full">
+      <SiderComponent />
       <div className="site-layout content-area ml-auto">
         {/* <HeaderComponent /> */}
-        <div className={`main-content-wrapper `}>
+        <div className={`main-content-wrapper p-60`}>
           <div className={`wrap-content `}>{props.children}</div>
         </div>
-        {/* <Footer style={{ textAlign: "center" }}>
-          © Copyrights <span style={{ color: "#000" }}>Alta Media</span> 2020.
-          All rights reserved.
-        </Footer> */}
       </div>
     </section>
   );

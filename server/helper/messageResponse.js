@@ -1,3 +1,15 @@
+const ApoloServer = require("apollo-server-express");
+const {
+  ApolloError,
+  AuthenticationError,
+  ForbiddenError,
+  UserInputError,
+} = ApoloServer;
+
+class NewError {
+  constructor(message) {}
+}
+
 const message = {
   messageSuccess: (message, data) => {
     return {

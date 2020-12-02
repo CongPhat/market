@@ -1,0 +1,8 @@
+query getCategory {
+  getCategory {
+    _id
+    name
+    icon
+    idParent
+  }
+}

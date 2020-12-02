@@ -1,5 +1,9 @@
-overwrite: true
-schema: "http://localhost:3000/graphql"
+schema:
+  - "http://localhost:3000/graphql":
+      headers:
+        {
+          authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1eW5oY29uZ3BoYXQ1QGdtYWlsLmNvbSIsImlkIjoiNWZjNjA2NWZmNjYwOGM1MDBlZTIzNzJiIiwiaW1hZ2UiOiJodHRwczovL3Njb250ZW50LXNpbjYtMS5jZG5pbnN0YWdyYW0uY29tL3YvdDUxLjI4ODUtMTUvc2gwLjA4L2UzNS9wNjQweDY0MC8xMTgyNjc0MjBfMTc1ODM4MjYwNjYzMzI3Xzc3MjAzNzIwMTU3MzY5NTIyOTBfbi5qcGc_X25jX2h0PXNjb250ZW50LXNpbjYtMS5jZG5pbnN0YWdyYW0uY29tJl9uY19jYXQ9MTA3Jl9uY19vaGM9Q0M1V3NiTzFwcWtBWF9Ya0RxUCZvaD1iMTkwNzk3YTU5YTdjMzZlM2M5MWRmYjY2M2Q4ZDM4YyZvZT01RjZDQzU5MCIsIm5hbWUiOiJDb25nIFBoYXQiLCJpYXQiOjE2MDY4MTQyNTR9.wKiVI_lb7j2pt1_VZ6QwcOhSw4_Op8sA4BOneLyCGBg",
+        }
 documents: "src/graphql/**/*.graphql"
 generates:
   src/generated/graphql.tsx:

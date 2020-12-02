@@ -3,7 +3,7 @@ const path = require("path");
 const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
 const devServer = {
-  port: 4444,
+  port: 6969,
   open: true,
   disableHostCheck: true,
   historyApiFallback: true,
