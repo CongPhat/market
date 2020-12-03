@@ -5,6 +5,7 @@ query getProducts($pageSize: Int!, $pageNumber: Int!, $idCategory: String!) {
     idCategory: $idCategory
   ) {
     _id
+    title
     content
     price
     address

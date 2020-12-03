@@ -4,7 +4,6 @@ const { withFilter } = require("apollo-server");
 const pubsub = new PubSub();
 module.exports = {
   friends: async (args, context) => {
-    console.log(context);
     const { id } = args;
     return await controllerFriend.getFriend(id);
   },

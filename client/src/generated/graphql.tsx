@@ -64,6 +64,7 @@ export type Products = {
   categoryId: Scalars['String'];
   media: Array<Maybe<Media>>;
   trending: Scalars['Boolean'];
+  title: Scalars['String'];
 };
 
 export type Media = {
@@ -168,7 +169,7 @@ export type GetProductsQuery = (
   { __typename?: 'RootQuery' }
   & { getProducts: Array<Maybe<(
     { __typename?: 'Products' }
-    & Pick<Products, '_id' | 'content' | 'price' | 'address' | 'userId' | 'categoryId' | 'trending'>
+    & Pick<Products, '_id' | 'title' | 'content' | 'price' | 'address' | 'userId' | 'categoryId' | 'trending'>
     & { media: Array<Maybe<(
       { __typename?: 'Media' }
       & Pick<Media, 'link' | 'type'>
@@ -265,6 +266,7 @@ export const GetProductsDocument = gql`
     idCategory: $idCategory
   ) {
     _id
+    title
     content
     price
     address

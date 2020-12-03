@@ -11,6 +11,7 @@ const ProductsSchema = mongoose.Schema({
     required: true,
   },
   address: { type: String },
+  title: { type: String, required: true },
   userId: {
     type: Schema.Types.ObjectId,
     required: true,

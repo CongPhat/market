@@ -6,6 +6,14 @@
   @apply bg-black;
   @apply bg-opacity-25;
 }
+.product-title {
+  @apply w-full;
+  @apply text-grey-900;
+  @apply font-light;
+  @apply leading-snug;
+  @apply overflow-hidden;
+  @apply truncate;
+}
 
 .content-area {
   width: calc(100% - 20%);

@@ -9,6 +9,7 @@ module.exports = {
             categoryId: String!
             media: [Media]!
             trending: Boolean!
+            title: String!
         }
       `,
   query: `

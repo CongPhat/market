@@ -1,4 +1,5 @@
 const ApoloServer = require("apollo-server-express");
+const Products = require("../../models/Products");
 const {
   ApolloError,
   AuthenticationError,
@@ -12,6 +13,12 @@ module.exports = {
     if (!_id) {
       return new ApolloError("User not exit", 400);
     }
-    console.log(args, "argsargsargs");
+    console.log(args, "argsargs");
+    const result = await Products.find({ categoryId: args.idCategory })
+      .sort({ date: "desc" })
+      .skip(args.pageNumber * args.pageSize)
+      .limit(args.pageSize);
+    console.log(result);
+    return result;
   },
 };

@@ -7,7 +7,7 @@ const { Content, Footer } = Layout;
 
 const DefaultLayout = (props) => {
   return (
-    <section className="default-layout flex bg-gray-200 h-full">
+    <section className="default-layout flex h-full">
       <SiderComponent />
       <div className="site-layout content-area ml-auto">
         {/* <HeaderComponent /> */}

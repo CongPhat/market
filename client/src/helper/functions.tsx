@@ -10,10 +10,10 @@ export const correctEmail = (value) => {
 export const correctLink = (str) => {
   var pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
       "(\\#[-a-z\\d_]*)?$",
     "i"
   ); // fragment locator
@@ -42,4 +42,9 @@ export const indexOfArrObject = (arr, key, value) => {
     }
   }
   return index;
+};
+
+export const formatMoney = (num: string | number) => {
+  if (num == 0) return `0đ`;
+  return `${num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}đ`;
 };

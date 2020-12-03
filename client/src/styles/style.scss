@@ -1,20 +1,87 @@
 @font-face {
-  font-family: "Roboto Regular";
+  font-family: "Roboto";
   font-style: normal;
   font-weight: normal;
   font-display: swap;
-  src: local("Roboto Regular"), local("Roboto-Regular"),
+  src: local("Roboto"), local("Roboto"),
     url("../assets/font/Roboto/Roboto-Regular.ttf") format("truetype");
 }
-
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Roboto"), local("Roboto"),
+    url("../assets/font/Roboto/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: local("Roboto"), local("Roboto"),
+    url("../assets/font/Roboto/Roboto-Thin.ttf") format("truetype");
+}
 /* Roboto bold */
 @font-face {
-  font-family: "Roboto Bold";
+  font-family: "Roboto";
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   font-display: swap;
-  src: local("Roboto Bold"), local("Roboto-Bold"),
+  src: local("Roboto"), local("Roboto"),
     url("../assets/font/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+/* Helvetica */
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local("Helvetica"), local("Helvetica"),
+    url("../assets/font/Helvetica/Helvetica-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: local("Helvetica"), local("Helvetica"),
+    url("../assets/font/Helvetica/Helvetica.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Helvetica"), local("Helvetica"),
+    url("../assets/font/Helvetica/Helvetica-Light.ttf") format("truetype");
+}
+
+/* Arial */
+@font-face {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local("Arial"), local("Arial"),
+    url("../assets/font/Arial/Arial-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: local("Arial"), local("Arial"),
+    url("../assets/font/Arial/Arial.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Arial"), local("Arial"),
+    url("../assets/font/Arial/Arial-Light.ttf") format("truetype");
 }
 
 .market-menu {
@@ -22,5 +89,41 @@
     &-item {
       display: flex;
     }
+  }
+}
+
+//======== MAX LINE ==============
+.max-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.6rem;
+
+  &-1 {
+    -webkit-line-clamp: 1;
+  }
+
+  &-2 {
+    -webkit-line-clamp: 2;
+  }
+
+  &-3 {
+    -webkit-line-clamp: 3;
+  }
+
+  &-4 {
+    -webkit-line-clamp: 4;
+  }
+
+  &-5 {
+    -webkit-line-clamp: 5;
+  }
+  &-6 {
+    -webkit-line-clamp: 6;
+  }
+  &-9 {
+    -webkit-line-clamp: 9;
   }
 }

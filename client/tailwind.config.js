@@ -134,6 +134,9 @@ module.exports = {
         800: "#97266d",
         900: "#702459",
       },
+      grey: {
+        900: "#242424",
+      },
     },
     spacing: {
       px: "1px",
@@ -157,6 +160,7 @@ module.exports = {
       64: "16rem",
       60: "60px",
       120: "120px",
+      200: "200px",
     },
     backgroundColor: (theme) => theme("colors"),
     backgroundImage: {
@@ -231,6 +235,7 @@ module.exports = {
       inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
       outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
       none: "none",
+      product: "rgba(0, 0, 0, 0.1) 0px 0px 20px",
     },
     container: {},
     cursor: {
@@ -287,6 +292,7 @@ module.exports = {
         '"Courier New"',
         "monospace",
       ],
+      display: ["Roboto", "Helvetica", "Arial", "sans-serif"],
     },
     fontSize: {
       xs: "0.75rem",
