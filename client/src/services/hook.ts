@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from "react";
-import NotificationComponent from "@components/commons/NotificationComponent";
 
 interface IState {
   status: "ready" | "loading" | "error";
@@ -29,12 +28,6 @@ export const useAsync = (asyncFunction, options?: IOptions) => {
     }));
 
     if (showSuccess) {
-      NotificationComponent({
-        type: "success",
-        notificationProps: {
-          message: response?.message || "Success",
-        },
-      });
     }
 
     return Promise.resolve(response);
@@ -48,12 +41,6 @@ export const useAsync = (asyncFunction, options?: IOptions) => {
     }));
 
     if (showError) {
-      NotificationComponent({
-        type: "error",
-        notificationProps: {
-          message: error?.response?.data?.message || "Something error",
-        },
-      });
     }
 
     return Promise.reject(error);

@@ -48,3 +48,16 @@ export const formatMoney = (num: string | number) => {
   if (num == 0) return `0đ`;
   return `${num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}đ`;
 };
+
+export const convertQuerySearch = (search: string) => {
+  const searchConvert = search.substring(1);
+  if (searchConvert == "") return {};
+  return JSON.parse(
+    '{"' +
+      decodeURI(searchConvert)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"') +
+      '"}'
+  );
+};

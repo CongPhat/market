@@ -14,6 +14,7 @@ module.exports = {
       `,
   query: `
             getProducts(pageSize: Int!, pageNumber: Int!, idCategory: String!): [Products]!
+            getDetailProduct(idProduct: String!) : Products!
         `,
   mutation: `
         `,

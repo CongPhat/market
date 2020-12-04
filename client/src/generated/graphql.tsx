@@ -81,6 +81,7 @@ export type RootQuery = {
   getProfile: User;
   getCategory: Array<Maybe<Category>>;
   getProducts: Array<Maybe<Products>>;
+  getDetailProduct: Products;
 };
 
 
@@ -100,6 +101,11 @@ export type RootQueryGetProductsArgs = {
   pageSize: Scalars['Int'];
   pageNumber: Scalars['Int'];
   idCategory: Scalars['String'];
+};
+
+
+export type RootQueryGetDetailProductArgs = {
+  idProduct: Scalars['String'];
 };
 
 export type RootMutation = {
@@ -175,6 +181,23 @@ export type GetProductsQuery = (
       & Pick<Media, 'link' | 'type'>
     )>> }
   )>> }
+);
+
+export type GetDetailProductQueryVariables = {
+  idProduct: Scalars['String'];
+};
+
+
+export type GetDetailProductQuery = (
+  { __typename?: 'RootQuery' }
+  & { getDetailProduct: (
+    { __typename?: 'Products' }
+    & Pick<Products, '_id' | 'title' | 'content' | 'price' | 'address' | 'userId' | 'categoryId' | 'trending'>
+    & { media: Array<Maybe<(
+      { __typename?: 'Media' }
+      & Pick<Media, 'link' | 'type'>
+    )>> }
+  ) }
 );
 
 export type GetProfileQueryVariables = {};
@@ -308,6 +331,50 @@ export function useGetProductsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type GetProductsQueryHookResult = ReturnType<typeof useGetProductsQuery>;
 export type GetProductsLazyQueryHookResult = ReturnType<typeof useGetProductsLazyQuery>;
 export type GetProductsQueryResult = Apollo.QueryResult<GetProductsQuery, GetProductsQueryVariables>;
+export const GetDetailProductDocument = gql`
+    query getDetailProduct($idProduct: String!) {
+  getDetailProduct(idProduct: $idProduct) {
+    _id
+    title
+    content
+    price
+    address
+    userId
+    media {
+      link
+      type
+    }
+    categoryId
+    trending
+  }
+}
+    `;
+
+/**
+ * __useGetDetailProductQuery__
+ *
+ * To run a query within a React component, call `useGetDetailProductQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDetailProductQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDetailProductQuery({
+ *   variables: {
+ *      idProduct: // value for 'idProduct'
+ *   },
+ * });
+ */
+export function useGetDetailProductQuery(baseOptions: Apollo.QueryHookOptions<GetDetailProductQuery, GetDetailProductQueryVariables>) {
+        return Apollo.useQuery<GetDetailProductQuery, GetDetailProductQueryVariables>(GetDetailProductDocument, baseOptions);
+      }
+export function useGetDetailProductLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDetailProductQuery, GetDetailProductQueryVariables>) {
+          return Apollo.useLazyQuery<GetDetailProductQuery, GetDetailProductQueryVariables>(GetDetailProductDocument, baseOptions);
+        }
+export type GetDetailProductQueryHookResult = ReturnType<typeof useGetDetailProductQuery>;
+export type GetDetailProductLazyQueryHookResult = ReturnType<typeof useGetDetailProductLazyQuery>;
+export type GetDetailProductQueryResult = Apollo.QueryResult<GetDetailProductQuery, GetDetailProductQueryVariables>;
 export const GetProfileDocument = gql`
     query getProfile {
   getProfile {

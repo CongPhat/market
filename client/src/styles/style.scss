@@ -92,6 +92,13 @@
   }
 }
 
+button {
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
 //======== MAX LINE ==============
 .max-line {
   display: -webkit-box;
@@ -125,5 +132,31 @@
   }
   &-9 {
     -webkit-line-clamp: 9;
+  }
+}
+div.clickEffect {
+  position: fixed;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: #57c3f5;
+  border-radius: 50%;
+  animation: clickEffect 0.4s ease-out;
+  z-index: 999999;
+}
+
+@keyframes clickEffect {
+  0% {
+    opacity: 1;
+    width: 0.25em;
+    height: 0.25em;
+    margin: -0.25em;
+    border-width: 0.25em;
+  }
+  100% {
+    opacity: 0.2;
+    width: 10em;
+    height: 10em;
+    margin: -5em;
+    border-width: 0.03em;
   }
 }

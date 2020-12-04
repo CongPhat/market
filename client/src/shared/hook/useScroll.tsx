@@ -5,34 +5,22 @@ interface IUseScroll {
 }
 const useScroll = (refCurrent: any, handleBottom: Function) => {
   const debounceHandleBottom = debounce(handleBottom, 100);
-  const checkScrollHeight = () => {
+  let checkScrollHeight = () => {
     if (
       window.pageYOffset + window.innerHeight >=
       refCurrent.current.getBoundingClientRect().height - 500
     ) {
       debounceHandleBottom();
     }
-    if (
-      window.pageYOffset + window.innerHeight >=
-      refCurrent.current.getBoundingClientRect().height
-    ) {
-      console.log(
-        window.pageYOffset + window.innerHeight,
-        "window.pageYOffset + window.innerHeight"
-      );
-      console.log(
-        refCurrent.current.getBoundingClientRect(),
-        "refCurrent.current.getBoundingClientRect()"
-      );
-
-      console.log("not scroll");
-
-      window.removeEventListener("scroll", checkScrollHeight);
-    }
+  };
+  const remove = () => {
+    window.removeEventListener("scroll", checkScrollHeight);
   };
   useEffect(() => {
+    window.removeEventListener("scroll", checkScrollHeight);
     window.addEventListener("scroll", checkScrollHeight);
-  }, [refCurrent]);
-  return;
+    return () => window.removeEventListener("scroll", checkScrollHeight);
+  });
+  return remove;
 };
 export default useScroll;

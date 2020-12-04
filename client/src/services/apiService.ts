@@ -1,7 +1,6 @@
 import { getToken, clearToken } from "./authentication";
 import axios from "axios";
 import { SERVICES } from "@config/index";
-import NotificationComponent from "@components/commons/NotificationComponent";
 
 class Service {
   service: any;
@@ -21,33 +20,15 @@ class Service {
     let status = error.response.status;
     switch (status) {
       case 401: {
-        NotificationComponent({
-          type: "error",
-          notificationProps: {
-            message: error?.response?.data?.message || "No permission",
-          },
-        });
         clearToken();
         window.location.reload();
         window.location.href = `/#/login`;
         break;
       }
       case 500: {
-        NotificationComponent({
-          type: "error",
-          notificationProps: {
-            message: error?.response?.data?.message || "Server Error",
-          },
-        });
         break;
       }
       default: {
-        NotificationComponent({
-          type: "error",
-          notificationProps: {
-            message: error?.response?.data?.message || "Error",
-          },
-        });
         break;
       }
     }

@@ -1,8 +1,18 @@
-import { formatMoney } from "@helper/functions";
+import { convertQuerySearch } from "@helper/functions";
 import { Skeleton } from "antd";
-import React, { useCallback, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-interface Iproducts {
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
+import { useLocation } from "react-router-dom";
+import ItemProduct from "./ItemProduct";
+const DetailProductComponent = React.lazy(() =>
+  import("@components/commons/DetailProductComponent")
+);
+export interface Iproducts {
   _id: string;
   content: string;
   price: string;
@@ -16,7 +26,7 @@ interface Iproducts {
   }>;
   trending: boolean;
 }
-interface Iprops {
+export interface Iprops {
   products: Array<Iproducts>;
   loading: boolean;
   defaultItem?: number;
@@ -28,54 +38,57 @@ const ProductsComponent = ({
   defaultItem = 20,
   reloadData,
 }: Iprops) => {
+  const location = useLocation();
+  const search = useMemo(() => convertQuerySearch(location.search), [location]);
+  console.log(search);
+
+  const refTopProducts = useRef(null);
   const memoProducts = useRef({
     dataMemo: [],
   });
+  const handleProducts = (reload: boolean) => {
+    const dataRender = reload
+      ? products
+      : [...memoProducts.current.dataMemo, ...products];
+    return dataRender;
+  };
   useEffect(() => {
-    memoProducts.current.dataMemo.push(...products);
-  }, [products]);
-  let productsLoading = Array.from(Array(defaultItem).keys());
-  const dataRender = reloadData
-    ? products
-    : [...memoProducts.current.dataMemo, ...products];
+    if (reloadData) {
+      refTopProducts.current.scrollIntoView({ block: "end" });
+    }
+  }, [reloadData]);
+  useEffect(() => {
+    memoProducts.current.dataMemo = handleProducts(reloadData);
+  }, [products, reloadData]);
+
+  const productsLoading = useMemo(
+    () => Array.from(Array(defaultItem).keys()),
+    []
+  );
 
   return (
-    <div className="grid grid-cols-6">
-      {dataRender.map((product, index) => (
-        <Link
-          key={index}
-          to={`/item/${product._id}`}
-          className="hover:shadow-product p-4 group"
-        >
-          <div className="h-200 m-auto">
-            <img
-              src={product.media[0].link}
-              alt={product.title}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="font-display">
-            <h6 className="product-title max-line max-line-2 text-sm">
-              {product.title}
-            </h6>
-            <span className=" text-grey-900 group-hover:text-grey-900 text-base font-medium">
-              {formatMoney(product.price)}
-            </span>
-          </div>
-        </Link>
-      ))}
-      {loading &&
-        productsLoading.map((item: any) => (
-          <div className="hover:shadow-product p-4 group">
-            <div className="h-200 m-auto">
-              <Skeleton.Image className="w-full h-full" />
-            </div>
-            <div className="font-display">
-              <Skeleton active />
-            </div>
-          </div>
+    <>
+      <div ref={refTopProducts} />
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {handleProducts(reloadData).map((product, index) => (
+          <ItemProduct key={index} product={product} />
         ))}
-    </div>
+        {loading &&
+          productsLoading.map((item: any) => (
+            <div className="hover:shadow-product p-4 group">
+              <div className="h-200 m-auto">
+                <Skeleton.Image className="w-full h-full" />
+              </div>
+              <div className="font-display">
+                <Skeleton active />
+              </div>
+            </div>
+          ))}
+      </div>
+      <Suspense fallback={<div></div>}>
+        {search.filter && <DetailProductComponent idProduct={search?.filter} />}
+      </Suspense>
+    </>
   );
 };
 export default React.memo(ProductsComponent);

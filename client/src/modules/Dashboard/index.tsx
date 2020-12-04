@@ -15,26 +15,22 @@ import { useParams } from "react-router";
 
 const DashBoard = (props) => {
   const { id }: any = useParams();
-  const [getProductsLazy, { loading, data, error }] = useGetProductsLazyQuery();
   const [options, setOptions] = useState({
     pageSize: 24,
     pageNumber: 1,
     idCategory: id,
     reload: false,
   });
+  const [getProductsLazy, { loading, data, error }] = useGetProductsLazyQuery();
   const refWrapperProduct = useRef(null);
-
   const handleBottom = useCallback(() => {
-    console.log("bottom");
-
     setOptions((pre) => ({
       ...pre,
       pageNumber: pre.pageNumber + 1,
       reload: false,
     }));
   }, []);
-
-  useScroll(refWrapperProduct, handleBottom);
+  const remove = useScroll(refWrapperProduct, handleBottom);
 
   useEffect(() => {
     getProductsLazy({ variables: options });
@@ -47,6 +43,9 @@ const DashBoard = (props) => {
       reload: true,
     }));
   }, [id]);
+  useEffect(() => {
+    if (data && data.getProducts.length == 0) remove();
+  }, [data]);
 
   if (error) {
     return <>Error....</>;
@@ -54,11 +53,10 @@ const DashBoard = (props) => {
   // if (loading) {
   //   return <>Loading....</>;
   // }
-  console.log("render");
 
   return (
     <>
-      <div ref={refWrapperProduct} id="test">
+      <div ref={refWrapperProduct}>
         <ProductsComponent
           products={data?.getProducts}
           loading={loading}

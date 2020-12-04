@@ -18,3 +18,20 @@ query getProducts($pageSize: Int!, $pageNumber: Int!, $idCategory: String!) {
     trending
   }
 }
+
+query getDetailProduct($idProduct: String!) {
+  getDetailProduct(idProduct: $idProduct) {
+    _id
+    title
+    content
+    price
+    address
+    userId
+    media {
+      link
+      type
+    }
+    categoryId
+    trending
+  }
+}
