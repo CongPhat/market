@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import { Iproducts } from "./index";
 interface IProps {
   product: Iproducts;
+  clickItemProduct: () => void;
 }
-const ItemProduct = ({ product }: IProps) => {
+const ItemProduct = ({ product, clickItemProduct }: IProps) => {
   return (
     <Link
       key={product._id}
       to={{ search: `?filter=${product._id}` }}
       className="hover:shadow-product p-4 group"
+      onClick={clickItemProduct}
     >
       <div className="h-200 m-auto">
         <img

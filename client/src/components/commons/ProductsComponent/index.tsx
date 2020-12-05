@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { useLocation } from "react-router-dom";
 import ItemProduct from "./ItemProduct";
@@ -40,7 +41,8 @@ const ProductsComponent = ({
 }: Iprops) => {
   const location = useLocation();
   const search = useMemo(() => convertQuerySearch(location.search), [location]);
-  console.log(search);
+  const [test, setTest] = useState(false);
+  console.log("render products");
 
   const refTopProducts = useRef(null);
   const memoProducts = useRef({
@@ -52,6 +54,9 @@ const ProductsComponent = ({
       : [...memoProducts.current.dataMemo, ...products];
     return dataRender;
   };
+  const handleClickItem = useCallback(() => {
+    setTest(true);
+  }, []);
   useEffect(() => {
     if (reloadData) {
       refTopProducts.current.scrollIntoView({ block: "end" });
@@ -69,22 +74,28 @@ const ProductsComponent = ({
   return (
     <>
       <div ref={refTopProducts} />
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {handleProducts(reloadData).map((product, index) => (
-          <ItemProduct key={index} product={product} />
-        ))}
-        {loading &&
-          productsLoading.map((item: any) => (
-            <div className="hover:shadow-product p-4 group">
-              <div className="h-200 m-auto">
-                <Skeleton.Image className="w-full h-full" />
-              </div>
-              <div className="font-display">
-                <Skeleton active />
-              </div>
-            </div>
+      {(!search.filter || test) && (
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {handleProducts(reloadData).map((product, index) => (
+            <ItemProduct
+              key={index}
+              product={product}
+              clickItemProduct={handleClickItem}
+            />
           ))}
-      </div>
+          {loading &&
+            productsLoading.map((item: any) => (
+              <div className="hover:shadow-product p-4 group">
+                <div className="h-200 m-auto">
+                  <Skeleton.Image className="w-full h-full" />
+                </div>
+                <div className="font-display">
+                  <Skeleton active />
+                </div>
+              </div>
+            ))}
+        </div>
+      )}
       <Suspense fallback={<div></div>}>
         {search.filter && <DetailProductComponent idProduct={search?.filter} />}
       </Suspense>

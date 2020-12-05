@@ -44,8 +44,8 @@ export const indexOfArrObject = (arr, key, value) => {
   return index;
 };
 
-export const formatMoney = (num: string | number) => {
-  if (num == 0) return `0đ`;
+export const formatMoney = (num: string | number | undefined) => {
+  if (num == 0 || num == undefined) return `0đ`;
   return `${num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}đ`;
 };
 

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import ThumnailSlider from "./ThumnailSlider";
 interface Iprops {
@@ -14,8 +15,6 @@ interface Iprops {
 }
 const SliderComponent = ({ media = [] }: Iprops) => {
   const slider = useSlider(media.length);
-  console.log(slider.current, media[slider.current]);
-
   const handleChange = useCallback((index) => {
     slider.setIndexSlider(index);
   }, []);
@@ -24,7 +23,7 @@ const SliderComponent = ({ media = [] }: Iprops) => {
     <div className="slider w-full h-full relative overflow-hidden">
       <button
         onClick={() => slider.setSlider("prev")}
-        className="absolute z-30 top-1/2 bg-white rounded-full w-12 h-12"
+        className="absolute z-30 top-1/2 bg-white rounded-full w-12 h-12 shadow-product"
         style={{ right: "2%" }}
       >
         <FontAwesomeIcon
@@ -58,7 +57,7 @@ const SliderComponent = ({ media = [] }: Iprops) => {
       </div>
       <button
         onClick={() => slider.setSlider("next")}
-        className="absolute z-30 top-1/2 bg-white rounded-full w-12 h-12"
+        className="absolute z-30 top-1/2 bg-white rounded-full w-12 h-12 shadow-product"
         style={{ left: "2%" }}
       >
         <FontAwesomeIcon

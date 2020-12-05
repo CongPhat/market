@@ -18,3 +18,18 @@
 .content-area {
   width: calc(100% - 20%);
 }
+
+.loading-header-title {
+  @apply bg-gray-200;
+  @apply rounded;
+  @apply min-h-6;
+  @apply my-2;
+  @apply animate-pulse;
+}
+.loading-paragraph {
+  @apply bg-gray-200;
+  @apply rounded;
+  @apply min-h-4;
+  @apply my-2;
+  @apply animate-pulse;
+}
